@@ -1,0 +1,19 @@
+{
+  "name": "tasks_app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -k \"pnpm --filter backend dev\" \"sleep 2 && pnpm --filter frontend dev\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.11.0",
+  "devDependencies": {
+    "@types/swagger-jsdoc": "^6.0.4",
+    "concurrently": "^9.1.2"
+  }
+}

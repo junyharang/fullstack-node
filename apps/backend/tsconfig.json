@@ -1,0 +1,22 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "target": "es6",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "rootDir": "../../",
+    "baseUrl": ".",
+    "strict": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "paths": {
+      "@common/*": ["../../packages/common/src/*"]
+    }
+  },
+  "include": [
+    "src/**/*.ts",
+    "../../packages/common/src/**/*.ts"
+  ],
+  "exclude": ["node_modules"]
+}
