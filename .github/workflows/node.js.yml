@@ -1,0 +1,65 @@
+name: Node.js CI with pnpm
+
+on:
+  push:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+    inputs:
+      targetStage:
+        description: "배포 환경"
+        type: choice
+        default: main
+        required: true
+        options: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    # strategy:
+    #   matrix:
+    #     node-version: [18.x, 20.x, 22.x]
+
+    steps:
+      - name: 📦 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Setup node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.17.0"
+          # cache: 'pnpm'
+
+      - name: 💿 Install pnpm
+        run: npm install -g pnpm
+        # uses: pnpm/action-setup@v2
+        # with:
+        #   version: 10.11.0 # 또는 10.x 등 대표님 프로젝트 버전에 맞게
+
+      - uses: actions/cache@v4
+        id: cache
+        with:
+          path: |
+            node_modules
+            .pnpm-store
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile --prod
+
+      - name: Build
+        run: pnpm build
+
+      # - name: 📥 Install dependencies
+      #   run: pnpm install
+
+      # - name: 🏗️ Run dev script
+      #   run: pnpm dev
+
+      # - name: 📄 Create .env for backend
+      #   run: |
+      #     echo "${{ secrets.PROD_BACKEND_ENV_FILE }}" > apps/backend/.env
