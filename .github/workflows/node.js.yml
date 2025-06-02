@@ -52,7 +52,7 @@ jobs:
         run: pnpm install --frozen-lockfile --prod
 
       - name: Build
-        run: pnpm build
+        run: pnpm dev
 
       # - name: 📥 Install dependencies
       #   run: pnpm install
