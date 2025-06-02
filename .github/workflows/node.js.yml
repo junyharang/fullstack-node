@@ -13,26 +13,32 @@ jobs:
         node-version: [18.x, 20.x, 22.x]
 
     steps:
-    - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'pnpm'  # npm → pnpm 으로 변경
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
 
-    - name: Install pnpm
-      run: npm install -g pnpm
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          run_install: false
 
-    - name: Install dependencies with pnpm (strict)
-      run: pnpm install --frozen-lockfile
+      - name: Install dependencies
+        run: pnpm install
 
-    - name: Create Backend .env file
-      run: echo "${{ secrets.PROD_BACKEND_ENV_FILE }}" > apps/backend/.env
+      - name: Generate backend .env file
+        run: |
+          mkdir -p ./apps/backend
+          echo "${{ secrets.PROD_BACKEND_ENV_FILE }}" > ./apps/backend/.env
 
-    - name: Run build
-      run: pnpm build
+      - name: Build all packages
+        run: pnpm build
 
-    # 필요 시 test 스크립트도 추가
-    # - name: Run tests
-    #   run: pnpm test
+      # 선택 사항: 테스트 명령어가 있다면 추가
+      # - name: Run tests
+      #   run: pnpm test
