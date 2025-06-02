@@ -11,6 +11,10 @@
       "@common/*": ["../../packages/common/src/*"]
     }
   },
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" }
+  ],
   "include": [
     "src/**/*.ts",
     "../../packages/common/src/**/*.ts"
