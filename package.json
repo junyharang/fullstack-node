@@ -6,6 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "concurrently -k \"pnpm --filter backend dev\" \"sleep 2 && pnpm --filter frontend dev\"",
+    "build": "pnpm --filter backend build && pnpm --filter frontend build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
