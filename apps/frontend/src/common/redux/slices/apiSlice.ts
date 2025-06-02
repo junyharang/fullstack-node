@@ -1,7 +1,7 @@
-import {deleteRequest, getRequest, patchRequest, postRequest} from "../../../utility/requests.ts";
+import {deleteRequest, getRequest, patchRequest, postRequest} from "../../../utility/requests";
 import {createAsyncThunk, createSlice, type PayloadAction} from "@reduxjs/toolkit";
-import {TASK_URL} from "../../../utility/apiUrl.ts";
-import type {ApiState} from "../../Type.ts";
+import {TASK_URL} from "../../../utility/apiUrl";
+import type {ApiState} from "../../Type";
 
 const initialState: ApiState = {
     getItemsData: null,
