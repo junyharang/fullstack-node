@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "@tasks_app/backend",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
