@@ -25,13 +25,13 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 8
+          version: 8 # 또는 사용하는 버전
           run_install: false
 
       - name: Install dependencies
         run: pnpm install
 
-      - name: Generate backend .env file
+      - name: Create backend .env file
         run: |
           mkdir -p ./apps/backend
           echo "${{ secrets.PROD_BACKEND_ENV_FILE }}" > ./apps/backend/.env
@@ -39,6 +39,6 @@ jobs:
       - name: Build all packages
         run: pnpm build
 
-      # 선택 사항: 테스트 명령어가 있다면 추가
+      # 필요 시 테스트 명령어 추가
       # - name: Run tests
       #   run: pnpm test
