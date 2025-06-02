@@ -25,11 +25,13 @@ jobs:
       - name: 💿 Install pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 10.11.0 # 또는 10.x 등 원하는 버전 명시
-          run_install: true
+          version: 10.11.0 # 또는 10.x 등 대표님 프로젝트 버전에 맞게
 
-      - name: 🧪 Run Tests or Dev Script
-        run: pnpm dev # 또는 build/test 등 원하는 스크립트 실행
+      - name: 📥 Install dependencies
+        run: pnpm install
+
+      - name: 🏗️ Run dev script
+        run: pnpm dev
 
       - name: 📄 Create .env for backend
         run: |
