@@ -1,23 +1,23 @@
 import {IoMdClose} from "react-icons/io";
 import {useDispatch, useSelector} from "react-redux";
-import {closeModal} from "../../common/redux/slices/modalSlice.ts";
-import type {RootState} from "../../common/redux/store.ts";
+import {closeModal} from "../../common/redux/slices/modalSlice";
+import type {RootState} from "../../common/redux/store";
 import React, {useEffect, useState} from "react";
-import type {GoogleOauthResponse, ModalStatus} from "../../common/Type.ts";
+import type {GoogleOauthResponse, ModalStatus} from "../../common/Type";
 import {toast} from "react-toastify";
-import {fetchPostItems} from "../../common/redux/slices/apiSlice.ts";
-import {useAppDispatch} from "../../common/redux/hooks.ts";
+import {fetchPostItems} from "../../common/redux/slices/apiSlice";
+import {useAppDispatch} from "../../common/redux/hooks";
 
 const Modal = () => {
-    let dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const handleCloseModal = () => {
         dispatch(closeModal());
     };
 
-    let {modalStatus, task} = useSelector((state: RootState) => state.modal);
+    const {modalStatus, task} = useSelector((state: RootState) => state.modal);
 
-    let userGoogleOauthSubValue = useSelector((state: RootState): GoogleOauthResponse | null => state.auth.googleOauthResponse)?.sub
+    const userGoogleOauthSubValue = useSelector((state: RootState): GoogleOauthResponse | null => state.auth.googleOauthResponse)?.sub
 
     const [formData, setFormData] = useState({
         userId: '',

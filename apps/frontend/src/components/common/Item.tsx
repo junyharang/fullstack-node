@@ -1,17 +1,17 @@
 import {MdEditDocument} from "react-icons/md";
 import {FaTrash} from "react-icons/fa";
-import type {TaskType} from "../../common/Type.ts";
+import type {TaskType} from "../../common/Type";
 import {useState} from "react";
-import {fetchDeleteCompleted, fetchGetItems, fetchUpdateCompleted} from "../../common/redux/slices/apiSlice.ts";
+import {fetchDeleteCompleted, fetchGetItems, fetchUpdateCompleted} from "../../common/redux/slices/apiSlice";
 import {toast} from 'react-toastify';
-import {useAppDispatch} from "../../common/redux/hooks.ts";
-import {openModal} from "../../common/redux/slices/modalSlice.ts";
+import {useAppDispatch} from "../../common/redux/hooks";
+import {openModal} from "../../common/redux/slices/modalSlice";
 
 const Item = ({task}: { task: TaskType }) => {
-    let {id, userId, title, description, createdDateTime, updatedDateTime, isCompleted, isImportant} = task;
-    let [todoCompleteStatus, setTodoCompleteStatus] = useState<boolean>(isCompleted);
-    let dispatch = useAppDispatch();
-    let changeCompleted = async () => {
+    const {id, userId, title, description, createdDateTime, updatedDateTime, isCompleted, isImportant} = task;
+    const [todoCompleteStatus, setTodoCompleteStatus] = useState<boolean>(isCompleted);
+    const dispatch = useAppDispatch();
+    const changeCompleted = async () => {
         // setIsCompleted(!isCompleted)을 호출하면 상태 업데이트가 비동기적으로 이루어지기 때문에, isCompleted의 값이 즉시 변경되지 않는다.
         // 따라서 updateCompletedData 객체를 생성할 때 isCompleted의 이전 값이 사용된다. 이로 인해 true/false가 한 단계씩 밀리게 된다.
 

@@ -1,9 +1,9 @@
 import {IoAddCircleOutline} from "react-icons/io5";
 import {useDispatch} from "react-redux";
-import {openModal} from "../../common/redux/slices/modalSlice.ts";
+import {openModal} from "../../common/redux/slices/modalSlice";
 
 const AddItem = () => {
-    let dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const handelOpenModal = () => {
         dispatch(openModal({modalStatus: 'create', task: null}));

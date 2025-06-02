@@ -1,24 +1,24 @@
 import type {ItemPanelProps} from '../../common/type/Props';
 import Item from "./Item.tsx";
 import {useSelector} from "react-redux";
-import type {RootState} from "../../common/redux/store.ts";
+import type {RootState} from "../../common/redux/store";
 import AddItem from "./AddItem.tsx";
 import PageTitle from "./PageTitle.tsx";
 import {useEffect, useState} from "react";
-import {fetchGetItems} from "../../common/redux/slices/apiSlice.ts";
-import {useAppDispatch} from "../../common/redux/hooks.ts";
+import {fetchGetItems} from "../../common/redux/slices/apiSlice";
+import {useAppDispatch} from "../../common/redux/hooks";
 import LoadingSkeleton from "./LoadingSkeleton.tsx";
 import {SkeletonTheme} from 'react-loading-skeleton';
-import type {GoogleOauthResponse, TaskType} from "../../common/Type.ts";
+import type {GoogleOauthResponse, TaskType} from "../../common/Type";
 import Modal from "./Modal.tsx";
 
 const ItemPanel = ({pageTitle, filteredCompleted, filteredImportant = false}: ItemPanelProps) => {
-    let googleOauthResponseValue: GoogleOauthResponse | null = useSelector((state: RootState) => state.auth.googleOauthResponse);
-    let userIdentifier: string | undefined = googleOauthResponseValue?.sub;
-    let getTaskData = useSelector((state: RootState) => state.api.getItemsData);
-    let isOpen = useSelector((state: RootState) => state.modal.isOpen);
-    let dispatch = useAppDispatch();
-    let [loading, setLoading] = useState(false);
+    const googleOauthResponseValue: GoogleOauthResponse | null = useSelector((state: RootState) => state.auth.googleOauthResponse);
+    const userIdentifier: string | undefined = googleOauthResponseValue?.sub;
+    const getTaskData = useSelector((state: RootState) => state.api.getItemsData);
+    const isOpen = useSelector((state: RootState) => state.modal.isOpen);
+    const dispatch = useAppDispatch();
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         if (!userIdentifier) {

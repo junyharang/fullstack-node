@@ -3,9 +3,9 @@ import {Link, useLocation} from "react-router-dom";
 import {FcGoogle} from "react-icons/fc";
 import {type CredentialResponse, GoogleLogin, GoogleOAuthProvider} from "@react-oauth/google";
 import {useDispatch, useSelector} from "react-redux";
-import {login, logout} from "../../common/redux/slices/authSlice.ts";
+import {login, logout} from "../../common/redux/slices/authSlice";
 import {useCallback, useState} from "react";
-import type {RootState} from "../../common/redux/store.ts";
+import type {RootState} from "../../common/redux/store";
 import {jwtDecode} from "jwt-decode";
 
 const NavigatorBar = () => {
@@ -14,7 +14,7 @@ const NavigatorBar = () => {
     const {name} = user && user.user ? user.user : '알 수 없음';
     const [isAuth, setIsAuth] = useState<boolean>(!!name);
 
-    let dispatch = useDispatch();
+    const dispatch = useDispatch();
     const isActive = (path: string) => useLocation().pathname === path;
 
     const handleLoginSuccess = useCallback((credentialResponse: CredentialResponse) => {
